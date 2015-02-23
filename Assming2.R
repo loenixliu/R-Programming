@@ -5,11 +5,11 @@
 
 makeCacheMatrix <- function(x = matrix()) {
     MatInv <- NULL
-    SetValue <- function(y) {
+    SetValue <- function(y) {   ## set the value of matrix
         x <<- y
         MatInv <<- NULL
     }
-    GetValue <- function() x
+    GetValue <- function() x    ## get the value of matrix
     SetMatInv <- function(solve) MatInv <<- solve
     GetMatInv <- function() MatInv
     list(SetValue=SetValue, GetValue=GetValue, SetMatInv=SetMatInv, GetMatInv=GetMatInv)
@@ -17,7 +17,7 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 
-cacheSolve <- function(x, ...) {
+cacheSolve <- function(x, ...) {     ## cache the value of matrix
     MatInv <- x$GetMatInv()
     if(!is.null(MatInv)) {
         message("Data already cached, accessing it")
@@ -29,10 +29,7 @@ cacheSolve <- function(x, ...) {
     MatInv
 }
 
-x = rbind(c(1, -1/4), c(-1/4, 1))
-m = makeCacheMatrix(x)
-#m$GetValue()
-cacheSolve(m)
+
 
 
 
